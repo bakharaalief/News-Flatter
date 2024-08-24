@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class Article extends StatefulWidget {
-  final String url;
+  final String? url;
   Article({this.url});
 
   @override
@@ -45,12 +45,12 @@ class _ArticleState extends State<Article> {
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        child: WebView(
-          initialUrl: widget.url,
-          onWebViewCreated: ((WebViewController webViewController){
-            _completer.complete(webViewController);
-          }),
-        ),
+        // child: WebView(
+        //   initialUrl: widget.url,
+        //   onWebViewCreated: ((WebViewController webViewController){
+        //     _completer.complete(webViewController);
+        //   }),
+        // ),
       ),
 
     );

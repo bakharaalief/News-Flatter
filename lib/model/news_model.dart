@@ -1,14 +1,14 @@
 
 class NewsModel {
-    String author;
-    String content;
-    String description;
-    String publishedAt;
-    String title;
-    String url;
-    String urlToImage;
+    final String? author;
+    final String? content;
+    final String? description;
+    final String? publishedAt;
+    final String? title;
+    final String? url;
+    final String? urlToImage;
 
-    NewsModel({this.author, this.content, this.description, this.publishedAt, this.title, this.url, this.urlToImage});
+    const NewsModel({this.author, this.content, this.description, this.publishedAt, this.title, this.url, this.urlToImage});
 
     factory NewsModel.fromJson(Map<String, dynamic> json) {
         return NewsModel(

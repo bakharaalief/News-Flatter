@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app1/Views/home.dart';
+import 'package:flutter_app1/Views/home1.dart';
+import 'package:flutter_app1/feature/news/page/home.dart';
 
 void main() => runApp(MyApp());
 

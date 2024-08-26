@@ -9,9 +9,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Welcome to Flutter',
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: true,
       theme: ThemeData(
-        primaryColor: Colors.white
+        appBarTheme: AppBarTheme(
+          color: Colors.white
+        ),
+        primaryColor: Colors.white,
+        scaffoldBackgroundColor: Colors.white
       ),
       home: Home()
     );

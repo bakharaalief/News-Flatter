@@ -22,13 +22,13 @@ class TopAppbar extends StatelessWidget implements PreferredSizeWidget {
       required this.iconColor,
       required this.bgColor});
 
-  final double height = 60;
+  final double _height = 50;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-        toolbarHeight: height,
-        backgroundColor: Colors.amber,
+        toolbarHeight: _height,
+        surfaceTintColor: Colors.white,
         flexibleSpace: SafeArea(
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 15),
@@ -39,7 +39,7 @@ class TopAppbar extends StatelessWidget implements PreferredSizeWidget {
                   iconName: Icons.menu,
                   size: 30,
                   color: iconColor,
-                  bgColor: Colors.grey,
+                  bgColor: bgColor,
                   onTap: firstIconTap,
                 ),
 
@@ -52,7 +52,7 @@ class TopAppbar extends StatelessWidget implements PreferredSizeWidget {
                     iconName: secondIcon,
                     size: 30,
                     color: iconColor,
-                    bgColor: Colors.grey,
+                    bgColor: bgColor,
                     onTap: secondIconTap),
 
                 SizedBox(
@@ -64,7 +64,7 @@ class TopAppbar extends StatelessWidget implements PreferredSizeWidget {
                     iconName: thirdIcon,
                     size: 30,
                     color: iconColor,
-                    bgColor: Colors.grey,
+                    bgColor: bgColor,
                     onTap: thirdIconTap)
               ],
             ),
@@ -73,5 +73,5 @@ class TopAppbar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(height);
+  Size get preferredSize => Size.fromHeight(_height);
 }

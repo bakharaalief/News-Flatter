@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_app1/core/helper/constant.dart';
 import 'package:flutter_app1/data/news/remote/response/top_headlines_response.dart';
 
-class RemoteData {
+class NewsRemoteData {
   final _dio = Dio();
 
   Future<TopHeadlinesResponse> getTopHeadlines() async {

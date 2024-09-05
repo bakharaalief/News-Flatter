@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app1/domain/news/model/news.dart';
+import 'package:news_flutter/core/helper/converter.dart';
+import 'package:news_flutter/domain/news/model/news.dart';
 
 class NewsItem extends StatelessWidget {
   final News news;
@@ -118,7 +119,7 @@ class NewsItem extends StatelessWidget {
                 ),
 
                 Text(
-                  news.publishedAt,
+                  Converter.toTimeAgo(news.publishedAt),
                   textAlign: TextAlign.start,
                   maxLines: 2,
                   style: TextStyle(fontSize: 16),

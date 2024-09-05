@@ -1,7 +1,7 @@
-import 'package:flutter_app1/core/di/service_locator.dart';
-import 'package:flutter_app1/domain/news/model/news.dart';
-import 'package:flutter_app1/domain/news/repository/news_repository.dart';
-import 'package:flutter_app1/domain/news/usecase/news_use_case.dart';
+import 'package:news_flutter/core/di/service_locator.dart';
+import 'package:news_flutter/domain/news/model/news.dart';
+import 'package:news_flutter/domain/news/repository/news_repository.dart';
+import 'package:news_flutter/domain/news/usecase/news_use_case.dart';
 
 class NewsUseCaseImpl extends NewsUseCase {
   final NewsRepository _newsRepository = serviceLocator<NewsRepository>();
@@ -9,5 +9,10 @@ class NewsUseCaseImpl extends NewsUseCase {
   @override
   Future<List<News>> getTopHeadlines() {
     return _newsRepository.getTopHeadlines();
+  }
+
+  @override
+  Future<List<News>> getTopHeadlinesCategory(String category) async {
+    return _newsRepository.getTopHeadlinesCategory(category);
   }
 }

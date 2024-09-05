@@ -1,5 +1,4 @@
-
-import 'package:flutter_app1/data/news/remote/response/article_response.dart';
+import 'package:news_flutter/data/news/remote/response/article_response.dart';
 
 class TopHeadlinesResponse {
   String? status;

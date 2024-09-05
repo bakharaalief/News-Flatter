@@ -1,4 +1,4 @@
-import 'package:flutter_app1/data/news/remote/response/source_response.dart';
+import 'package:news_flutter/data/news/remote/response/source_response.dart';
 
 class ArticleResponse {
   SourceResponse? source;

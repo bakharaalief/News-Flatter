@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app1/core/di/service_locator.dart';
-import 'package:flutter_app1/feature/news/page/home.dart';
+import 'package:news_flutter/core/di/service_locator.dart';
+import 'package:news_flutter/feature/news/page/home.dart';
 
 void main() {
   setupLocator();

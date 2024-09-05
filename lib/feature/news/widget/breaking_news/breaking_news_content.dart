@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app1/domain/news/model/news.dart';
+import 'package:news_flutter/core/helper/converter.dart';
+import 'package:news_flutter/domain/news/model/news.dart';
 
 class BreakingNewsContent extends StatelessWidget {
   final News news;
@@ -41,7 +42,7 @@ class BreakingNewsContent extends StatelessWidget {
 
           //author
           Text(
-            "${news.author} - 6 hours ago",
+            "${news.author} - ${Converter.toTimeAgo(news.publishedAt)}",
             textAlign: TextAlign.start,
             style: TextStyle(
                 color: Colors.white,

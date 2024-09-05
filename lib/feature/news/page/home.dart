@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app1/core/widget/news/news_list.dart';
-import 'package:flutter_app1/core/widget/title_text.dart';
-import 'package:flutter_app1/core/widget/top_appbar.dart';
-import 'package:flutter_app1/feature/news/bloc/breaking_news/breaking_news_bloc.dart';
-import 'package:flutter_app1/feature/news/bloc/breaking_news/breaking_news_event.dart';
-import 'package:flutter_app1/feature/news/bloc/breaking_news/breaking_news_state.dart';
-import 'package:flutter_app1/feature/news/widget/breaking_news/breaking_news_content_error.dart';
-import 'package:flutter_app1/feature/news/widget/breaking_news/breaking_news_content_loading.dart';
-import 'package:flutter_app1/feature/news/widget/breaking_news/breaking_news_list.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_flutter/core/widget/title_text.dart';
+import 'package:news_flutter/core/widget/top_appbar.dart';
+import 'package:news_flutter/domain/news/model/news.dart';
+import 'package:news_flutter/feature/news/bloc/breaking_news_bloc.dart';
+import 'package:news_flutter/feature/news/bloc/recommend_news_bloc/recommend_news_bloc.dart';
+import 'package:news_flutter/feature/news/widget/breaking_news/breaking_news_content_error.dart';
+import 'package:news_flutter/feature/news/widget/breaking_news/breaking_news_content_loading.dart';
+import 'package:news_flutter/feature/news/widget/breaking_news/breaking_news_list.dart';
+import 'package:news_flutter/feature/news/widget/vertical_news/news_list_loading.dart';
+
+import '../../../core/bloc/bloc_network/bloc_network_event.dart';
+import '../../../core/bloc/bloc_network/bloc_network_state.dart';
+import '../bloc/recommend_news_bloc/recommend_news_event.dart';
+import '../widget/vertical_news/news_list.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -19,16 +24,19 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final BreakingNewsBloc _breakingNewsBloc = BreakingNewsBloc();
+  final RecommendNewsBloc _recommendNewsBloc = RecommendNewsBloc();
 
   @override
   void initState() {
-    _breakingNewsBloc.add(GetBreakingNewsEvent());
+    _breakingNewsBloc.add(BlocGetDataEvent());
+    _recommendNewsBloc.add(GetRecommendNewsEvent("health"));
     super.initState();
   }
 
   @override
   void dispose() {
     _breakingNewsBloc.close();
+    _recommendNewsBloc.close();
     super.dispose();
   }
 
@@ -38,6 +46,9 @@ class _HomeState extends State<Home> {
       providers: [
         BlocProvider<BreakingNewsBloc>(
           create: (BuildContext context) => _breakingNewsBloc,
+        ),
+        BlocProvider<RecommendNewsBloc>(
+          create: (BuildContext context) => _recommendNewsBloc,
         )
       ],
       child: Scaffold(
@@ -58,14 +69,14 @@ class _HomeState extends State<Home> {
               title: "Breaking News",
               onPressViewAll: () {},
             ),
-            BlocBuilder<BreakingNewsBloc, BreakingNewsState>(
+            BlocBuilder<BreakingNewsBloc, BlocNetworkState<List<News>>>(
                 builder: (context, state) {
-              if (state is BreakingNewsErrorState) {
+              if (state is BlocNetworkErrorState<List<News>>) {
                 return BreakingNewsContentError(
                   error: state.error,
                 );
-              } else if (state is BreakingNewsSuccessState) {
-                return BreakingNewsList(listNews: state.breakingNews);
+              } else if (state is BlocNetworkSuccessState<List<News>>) {
+                return BreakingNewsList(listNews: state.result);
               } else {
                 return BreakingNewsContentLoading();
               }
@@ -76,9 +87,18 @@ class _HomeState extends State<Home> {
               title: "Recommendation",
               onPressViewAll: () {},
             ),
-            NewsList(
-              listNews: [],
-            )
+            BlocBuilder<RecommendNewsBloc, BlocNetworkState<List<News>>>(
+                builder: (context, state) {
+              if (state is BlocNetworkErrorState<List<News>>) {
+                return BreakingNewsContentError(
+                  error: state.error,
+                );
+              } else if (state is BlocNetworkSuccessState<List<News>>) {
+                return NewsList(listNews: state.result);
+              } else {
+                return NewsListLoading();
+              }
+            }),
           ],
         )),
       ),

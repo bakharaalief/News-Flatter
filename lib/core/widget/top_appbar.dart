@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app1/core/widget/circular_btn.dart';
+import 'package:news_flutter/core/widget/circular_btn.dart';
 
 class TopAppbar extends StatelessWidget implements PreferredSizeWidget {
   final IconData firstIcon;

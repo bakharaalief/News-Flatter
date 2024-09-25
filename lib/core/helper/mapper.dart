@@ -1,3 +1,4 @@
+import 'package:news_flutter/core/helper/dummy.dart';
 import 'package:news_flutter/data/news/remote/response/article_response.dart';
 import 'package:news_flutter/domain/news/model/news.dart';
 
@@ -9,10 +10,15 @@ class Mapper {
                 newsResponse.title ?? "",
                 newsResponse.description ?? "",
                 newsResponse.url ?? "",
-                newsResponse.urlToImage ?? "",
+                Dummy.Image(newsResponse.title?[0] ?? "a"),
                 newsResponse.publishedAt ?? "",
-                newsResponse.content ?? ""))
+                newsResponse.content ?? "",
+                Dummy.category(newsResponse.title?[0] ?? "a")))
             .toList() ??
         [];
+  }
+
+  static String TitleTrimmer(String title) {
+    return title.substring(0, title.indexOf('-')).trim();
   }
 }

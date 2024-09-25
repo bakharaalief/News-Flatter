@@ -5,6 +5,7 @@ import 'package:news_flutter/core/widget/top_appbar.dart';
 import 'package:news_flutter/domain/news/model/news.dart';
 import 'package:news_flutter/feature/news/bloc/breaking_news_bloc.dart';
 import 'package:news_flutter/feature/news/bloc/recommend_news_bloc/recommend_news_bloc.dart';
+import 'package:news_flutter/feature/news/page/news_detail.dart';
 import 'package:news_flutter/feature/news/widget/breaking_news/breaking_news_content_error.dart';
 import 'package:news_flutter/feature/news/widget/breaking_news/breaking_news_content_loading.dart';
 import 'package:news_flutter/feature/news/widget/breaking_news/breaking_news_list.dart';
@@ -15,14 +16,14 @@ import '../../../core/bloc/bloc_network/bloc_network_state.dart';
 import '../bloc/recommend_news_bloc/recommend_news_event.dart';
 import '../widget/vertical_news/news_list.dart';
 
-class Home extends StatefulWidget {
-  const Home({super.key});
+class NewsHome extends StatefulWidget {
+  const NewsHome({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  State<NewsHome> createState() => _NewsHomeState();
 }
 
-class _HomeState extends State<Home> {
+class _NewsHomeState extends State<NewsHome> {
   final BreakingNewsBloc _breakingNewsBloc = BreakingNewsBloc();
   final RecommendNewsBloc _recommendNewsBloc = RecommendNewsBloc();
 
@@ -40,6 +41,15 @@ class _HomeState extends State<Home> {
     super.dispose();
   }
 
+  void _onTapNews(News news) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => NewsDetail(
+                  news: news,
+                )));
+  }
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -53,7 +63,7 @@ class _HomeState extends State<Home> {
       ],
       child: Scaffold(
         appBar: TopAppbar(
-            firstIcon: Icons.menu,
+            firstIcon: Icons.person,
             firstIconTap: () {},
             secondIcon: Icons.search,
             secondIconTap: () {},
@@ -76,7 +86,10 @@ class _HomeState extends State<Home> {
                   error: state.error,
                 );
               } else if (state is BlocNetworkSuccessState<List<News>>) {
-                return BreakingNewsList(listNews: state.result);
+                return BreakingNewsList(
+                  listNews: state.result,
+                  onTap: _onTapNews,
+                );
               } else {
                 return BreakingNewsContentLoading();
               }
@@ -94,7 +107,10 @@ class _HomeState extends State<Home> {
                   error: state.error,
                 );
               } else if (state is BlocNetworkSuccessState<List<News>>) {
-                return NewsList(listNews: state.result);
+                return NewsList(
+                  listNews: state.result,
+                  onTap: _onTapNews,
+                );
               } else {
                 return NewsListLoading();
               }

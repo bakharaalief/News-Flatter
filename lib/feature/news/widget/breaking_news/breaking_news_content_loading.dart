@@ -10,8 +10,9 @@ class BreakingNewsContentLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-        baseColor: Colors.blueAccent,
-        highlightColor: Colors.white,
-        child: BreakingNewsList(listNews: _listNews));
+      baseColor: Colors.blueAccent,
+      highlightColor: Colors.white,
+      child: BreakingNewsList(listNews: _listNews, onTap: (news) {}),
+    );
   }
 }

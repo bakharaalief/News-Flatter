@@ -4,8 +4,10 @@ import 'package:news_flutter/feature/news/widget/breaking_news/breaking_news_ite
 
 class BreakingNewsList extends StatelessWidget {
   final List<News> listNews;
+  final void Function(News news) onTap;
 
-  const BreakingNewsList({super.key, required this.listNews});
+  const BreakingNewsList(
+      {super.key, required this.listNews, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,10 @@ class BreakingNewsList extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             shrinkWrap: true,
             itemBuilder: (content, index) {
-              return BreakingNewsItem(news: listNews[index]);
+              return BreakingNewsItem(
+                news: listNews[index],
+                onTap: onTap,
+              );
             }));
   }
 }

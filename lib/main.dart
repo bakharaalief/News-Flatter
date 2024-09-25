@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_flutter/core/di/service_locator.dart';
-import 'package:news_flutter/feature/news/page/home.dart';
+import 'package:news_flutter/feature/news/page/news_home.dart';
 
 void main() {
   setupLocator();
@@ -17,6 +17,6 @@ class MyApp extends StatelessWidget {
             appBarTheme: AppBarTheme(color: Colors.white),
             primaryColor: Colors.white,
             scaffoldBackgroundColor: Colors.white),
-        home: Home());
+        home: NewsHome());
   }
 }

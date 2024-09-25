@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_flutter/core/helper/converter.dart';
+import 'package:news_flutter/core/widget/category_chip.dart';
 import 'package:news_flutter/domain/news/model/news.dart';
 
 class BreakingNewsContent extends StatelessWidget {
@@ -23,18 +24,7 @@ class BreakingNewsContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           //category
-          Container(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                color: Colors.blueAccent,
-              ),
-              child: Text(
-                "Sports",
-                textAlign: TextAlign.center,
-                style:
-                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-              )),
+          CategoryChip(category: news.category,),
 
           Spacer(
             flex: 1,

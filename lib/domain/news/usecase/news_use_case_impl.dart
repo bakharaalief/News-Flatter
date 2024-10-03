@@ -7,8 +7,13 @@ class NewsUseCaseImpl extends NewsUseCase {
   final NewsRepository _newsRepository = serviceLocator<NewsRepository>();
 
   @override
-  Future<List<News>> getTopHeadlines() {
+  Future<List<News>> getTopHeadlines() async {
     return _newsRepository.getTopHeadlines();
+  }
+
+  @override
+  Future<List<News>> getTopHeadlinesPaging(int page) async {
+    return _newsRepository.getTopHeadlinesPaging(page);
   }
 
   @override

@@ -95,7 +95,7 @@ class NewsItem extends StatelessWidget {
                           child: CircularProgressIndicator(),
                         ),
                         errorWidget: (context, url, error) =>
-                            Icon(Icons.broken_image, size: 60),
+                            Icon(Icons.broken_image, size: 30),
                       ),
 
                       SizedBox(

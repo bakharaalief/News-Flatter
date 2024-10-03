@@ -14,6 +14,12 @@ class NewsRepositoryImpl extends NewsRepository {
   }
 
   @override
+  Future<List<News>> getTopHeadlinesPaging(int page) async {
+    final response = await _newsRemoteData.getTopHeadlinesPaging(page);
+    return Mapper.articleResponseToListNews(response.articles);
+  }
+
+  @override
   Future<List<News>> getTopHeadlinesCategory(String category) async {
     final response = await _newsRemoteData.getTopHeadlinesCategory(category);
     return Mapper.articleResponseToListNews(response.articles);

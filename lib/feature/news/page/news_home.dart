@@ -6,6 +6,7 @@ import 'package:news_flutter/domain/news/model/news.dart';
 import 'package:news_flutter/feature/news/bloc/breaking_news_bloc.dart';
 import 'package:news_flutter/feature/news/bloc/recommend_news_bloc/recommend_news_bloc.dart';
 import 'package:news_flutter/feature/news/page/news_detail.dart';
+import 'package:news_flutter/feature/news/page/news_view_all.dart';
 import 'package:news_flutter/feature/news/widget/breaking_news/breaking_news_content_error.dart';
 import 'package:news_flutter/feature/news/widget/breaking_news/breaking_news_content_loading.dart';
 import 'package:news_flutter/feature/news/widget/breaking_news/breaking_news_list.dart';
@@ -29,9 +30,9 @@ class _NewsHomeState extends State<NewsHome> {
 
   @override
   void initState() {
+    super.initState();
     _breakingNewsBloc.add(BlocGetDataEvent());
     _recommendNewsBloc.add(GetRecommendNewsEvent("health"));
-    super.initState();
   }
 
   @override
@@ -48,6 +49,11 @@ class _NewsHomeState extends State<NewsHome> {
             builder: (context) => NewsDetail(
                   news: news,
                 )));
+  }
+
+  void _onTapViewAll() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => NewsViewAll()));
   }
 
   @override
@@ -77,7 +83,7 @@ class _NewsHomeState extends State<NewsHome> {
             //breaking news
             TitleText(
               title: "Breaking News",
-              onPressViewAll: () {},
+              onPressViewAll: _onTapViewAll,
             ),
             BlocBuilder<BreakingNewsBloc, BlocNetworkState<List<News>>>(
                 builder: (context, state) {
@@ -98,7 +104,7 @@ class _NewsHomeState extends State<NewsHome> {
             //recommendation news
             TitleText(
               title: "Recommendation",
-              onPressViewAll: () {},
+              onPressViewAll: _onTapViewAll,
             ),
             BlocBuilder<RecommendNewsBloc, BlocNetworkState<List<News>>>(
                 builder: (context, state) {

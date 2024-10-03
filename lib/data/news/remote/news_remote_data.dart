@@ -19,6 +19,20 @@ class NewsRemoteData {
     }
   }
 
+  Future<TopHeadlinesResponse> getTopHeadlinesPaging(int page) async {
+    try {
+      final response = await _dio.get(
+          "${Constant.baseUrl}/top-headlines?pageSize=5&apiKey=${Constant.apiKey}&country=us&page=${page}");
+      if (response.statusCode == 200) {
+        return TopHeadlinesResponse.fromJson(response.data);
+      } else {
+        throw Exception(response.statusMessage);
+      }
+    } catch (e) {
+      throw Exception("$e");
+    }
+  }
+
   Future<TopHeadlinesResponse> getTopHeadlinesCategory(String category) async {
     try {
       final response = await _dio.get(

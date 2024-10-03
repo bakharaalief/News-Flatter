@@ -10,7 +10,8 @@ class Mapper {
                 newsResponse.title ?? "",
                 newsResponse.description ?? "",
                 newsResponse.url ?? "",
-                Dummy.Image(newsResponse.title?[0] ?? "a"),
+                newsResponse.urlToImage ??
+                    Dummy.Image(newsResponse.title?[0] ?? "a"),
                 newsResponse.publishedAt ?? "",
                 newsResponse.content ?? "",
                 Dummy.category(newsResponse.title?[0] ?? "a")))

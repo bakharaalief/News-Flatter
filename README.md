@@ -1,17 +1,31 @@
-# flutter_app1
+# News Flutter
 
-A new Flutter application.
+A News Flutter App
 
-## Getting Started
+## Feature
 
-This project is a starting point for a Flutter application.
+- search news
+- list all news (paging)
+- detail news
+- bookmark news
 
-A few resources to get you started if this is your first Flutter project:
+## Project Structure
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+- I use clean architecture for this app and devide app to several folder
+- and than i divide the app by the feature to make app more easy to access
+- to make app easy to maintain, i using bloc to devide view and business logic
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-"# News-Flatter" 
+## dependencies
+
+- cached_network_image
+- dio
+- flutter bloc
+- shimmer
+- get it
+- timeago
+- rename_app
+- infinite_scroll_pagination
+
+## Screenshot
+
+<img src="./ss/ss_hp.png"/>

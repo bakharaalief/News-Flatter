@@ -5,6 +5,7 @@ import 'package:news_flutter/domain/news/model/news.dart';
 import 'package:news_flutter/feature/news/bloc/breaking_news_paging_bloc/breaking_news_paging_bloc.dart';
 import 'package:news_flutter/feature/news/bloc/breaking_news_paging_bloc/breaking_news_paging_event.dart';
 import 'package:news_flutter/feature/news/bloc/breaking_news_paging_bloc/breaking_news_paging_state.dart';
+import 'package:news_flutter/feature/news/page/news_detail.dart';
 import 'package:news_flutter/feature/news/widget/vertical_news/news_item.dart';
 
 import '../../../core/widget/top_appbar.dart';
@@ -36,6 +37,19 @@ class _NewsViewAllState extends State<NewsViewAll> {
 
   @override
   Widget build(BuildContext context) {
+    void _arrowBack() {
+      Navigator.pop(context);
+    }
+
+    void _onTapNews(News news) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => NewsDetail(
+                    news: news,
+                  )));
+    }
+
     return MultiBlocProvider(
       providers: [
         BlocProvider<BreakingNewsPagingBloc>(
@@ -45,7 +59,7 @@ class _NewsViewAllState extends State<NewsViewAll> {
       child: Scaffold(
         appBar: TopAppbar(
             firstIcon: Icons.arrow_back,
-            firstIconTap: () {},
+            firstIconTap: _arrowBack,
             secondIcon: Icons.search,
             secondIconTap: () {},
             thirdIcon: Icons.notifications_rounded,
@@ -61,7 +75,7 @@ class _NewsViewAllState extends State<NewsViewAll> {
                 pagingController: state.result,
                 builderDelegate: PagedChildBuilderDelegate<News>(
                   itemBuilder: (context, item, index) => NewsItem(
-                    onTap: (news) {},
+                    onTap: _onTapNews,
                     news: item,
                   ),
                 ));

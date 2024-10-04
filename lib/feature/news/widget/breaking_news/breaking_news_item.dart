@@ -19,7 +19,7 @@ class BreakingNewsItem extends StatelessWidget {
       child: Container(
           padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
           child: Card(
-              color: Colors.amber,
+              color: Colors.blueAccent,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
               ),

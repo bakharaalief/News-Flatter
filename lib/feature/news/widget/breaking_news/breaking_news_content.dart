@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app1/domain/news/model/news.dart';
+import 'package:news_flutter/core/helper/converter.dart';
+import 'package:news_flutter/core/widget/category_chip.dart';
+import 'package:news_flutter/domain/news/model/news.dart';
 
 class BreakingNewsContent extends StatelessWidget {
   final News news;
@@ -22,18 +24,7 @@ class BreakingNewsContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           //category
-          Container(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                color: Colors.blueAccent,
-              ),
-              child: Text(
-                "Sports",
-                textAlign: TextAlign.center,
-                style:
-                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-              )),
+          CategoryChip(category: news.category,),
 
           Spacer(
             flex: 1,
@@ -41,7 +32,7 @@ class BreakingNewsContent extends StatelessWidget {
 
           //author
           Text(
-            "${news.author} - 6 hours ago",
+            "${news.author} - ${Converter.toTimeAgo(news.publishedAt)}",
             textAlign: TextAlign.start,
             style: TextStyle(
                 color: Colors.white,

@@ -1,4 +1,4 @@
-class News {
+class ArticleEntity {
   final String author;
   final String title;
   final String desc;
@@ -6,8 +6,7 @@ class News {
   final String urlToImage;
   final String publishedAt;
   final String content;
-  final String category;
 
-  const News(this.author, this.title, this.desc, this.url, this.urlToImage,
-      this.publishedAt, this.content, this.category);
+  const ArticleEntity(this.author, this.title, this.desc, this.url,
+      this.urlToImage, this.publishedAt, this.content);
 }

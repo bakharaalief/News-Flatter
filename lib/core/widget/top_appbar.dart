@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app1/core/widget/circular_btn.dart';
+import 'package:news_flutter/core/widget/circular_btn.dart';
 
 class TopAppbar extends StatelessWidget implements PreferredSizeWidget {
   final IconData firstIcon;
@@ -22,56 +22,55 @@ class TopAppbar extends StatelessWidget implements PreferredSizeWidget {
       required this.iconColor,
       required this.bgColor});
 
-  final double _height = 50;
+  final double _toolbarHeight = 75;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-        toolbarHeight: _height,
-        surfaceTintColor: Colors.white,
-        flexibleSpace: SafeArea(
-          child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 15),
-            child: Row(
-              children: [
-                //first icon
-                CircularBtn(
-                  iconName: Icons.menu,
-                  size: 30,
-                  color: iconColor,
-                  bgColor: bgColor,
-                  onTap: firstIconTap,
-                ),
-
-                Spacer(
-                  flex: 1,
-                ),
-
-                //second icon
-                CircularBtn(
-                    iconName: secondIcon,
-                    size: 30,
-                    color: iconColor,
-                    bgColor: bgColor,
-                    onTap: secondIconTap),
-
-                SizedBox(
-                  width: 10,
-                ),
-
-                //third icon
-                CircularBtn(
-                    iconName: thirdIcon,
-                    size: 30,
-                    color: iconColor,
-                    bgColor: bgColor,
-                    onTap: thirdIconTap)
-              ],
+      toolbarHeight: _toolbarHeight,
+      surfaceTintColor: Colors.white,
+      automaticallyImplyLeading: false,
+      title: Container(
+        child: Row(
+          children: [
+            //first icon
+            CircularBtn(
+              iconName: firstIcon,
+              size: 30,
+              color: iconColor,
+              bgColor: bgColor,
+              onTap: firstIconTap,
             ),
-          ),
-        ));
+
+            Spacer(
+              flex: 1,
+            ),
+
+            //second icon
+            CircularBtn(
+                iconName: secondIcon,
+                size: 30,
+                color: iconColor,
+                bgColor: bgColor,
+                onTap: secondIconTap),
+
+            SizedBox(
+              width: 10,
+            ),
+
+            //third icon
+            CircularBtn(
+                iconName: thirdIcon,
+                size: 30,
+                color: iconColor,
+                bgColor: bgColor,
+                onTap: thirdIconTap)
+          ],
+        ),
+      ),
+    );
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(_height);
+  Size get preferredSize => Size.fromHeight(_toolbarHeight);
 }

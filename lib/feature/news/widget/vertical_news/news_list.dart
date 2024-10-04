@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app1/core/widget/news/news_item.dart';
-import 'package:flutter_app1/domain/news/model/news.dart';
+import 'package:news_flutter/domain/news/model/news.dart';
+
+import 'news_item.dart';
 
 class NewsList extends StatelessWidget {
   final List<News> listNews;
+  final void Function(News news) onTap;
 
-  const NewsList({super.key, required this.listNews});
+  const NewsList({super.key, required this.listNews, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,10 @@ class NewsList extends StatelessWidget {
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemBuilder: (content, index) {
-              return NewsItem(news: listNews[index]);
+              return NewsItem(
+                news: listNews[index],
+                onTap: onTap,
+              );
             }));
   }
 }

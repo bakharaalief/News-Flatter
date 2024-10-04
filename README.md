@@ -2,6 +2,9 @@
 
 A News Flutter App
 
+## Inspired Design By
+https://dribbble.com/shots/20776712-GoRead-News-App
+
 ## Feature
 
 - search news
